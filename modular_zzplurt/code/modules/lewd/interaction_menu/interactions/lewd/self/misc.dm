@@ -2,6 +2,9 @@
 	name = "Clothesplosion"
 	description = "Explode out of your clothes."
 	usage = INTERACTION_SELF
+	interaction_requires = list(
+		INTERACTION_REQUIRE_SELF_HUMAN
+	)
 	message = list(
 		"bursts out of their clothes!",
 		"explodes out of their outfit!",

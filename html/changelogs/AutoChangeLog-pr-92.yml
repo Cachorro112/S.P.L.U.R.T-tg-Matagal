@@ -1,0 +1,6 @@
+author: "mcbalaam"
+delete-after: True
+changes:
+  - rscadd: "Any mob can now interact - yuppie!"
+  - refactor: "Arousal/pleasure code refactoring"
+  - bugfix: "Mobs statuses in the UI are now properly spaced"

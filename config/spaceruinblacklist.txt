@@ -90,3 +90,7 @@
 #modular_skyrat/modules/mapping/_maps/RandomRuins/SpaceRuins/forgottenship_skyrat.dmm
 #modular_skyrat/modules/mapping/_maps/RandomRuins/SpaceRuins/shuttle8532.dmm
 #modular_skyrat/modules/ruins/maps/space/dangerous_research.dmm
+
+# Matagal RUINS BELOW
+#_maps/effigy/RandomRuins/SpaceRuins/crashed_transport.dmm
+#_maps/effigy/RandomRuins/SpaceRuins/whodunit.dmm

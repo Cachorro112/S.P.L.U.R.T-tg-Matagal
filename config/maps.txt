@@ -94,3 +94,17 @@ map kilostation
 	maxplayers 75
 	votable
 endmap
+
+##MATAGALSTATION MAPS##
+
+map foxholestation
+	votable
+endmap
+
+map rimpoint
+	votable
+endmap
+
+map sigma_octantis
+	votable
+endmap

@@ -24,7 +24,11 @@
 		#include "map_files\moonstation\moonstation.dmm"
 		#include "map_files\BoxStation\BoxStation.dmm"
 		// BUBBER EDIT ADDITION END
-
+		// MATAGAL EDIT
+		#include "effigy\map_files\FoxHoleStation\foxholestation.dmm"
+		#include "effigy\map_files\RimPoint\RimPoint.dmm"
+		#include "effigy\map_files\SigmaOctantis\SigmaOctantis.dmm"
+		// MATAGAL EDIT END
 		#ifdef CIBUILDING
 			#include "templates.dm"
 		#endif

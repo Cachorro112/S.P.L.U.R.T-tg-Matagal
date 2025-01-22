@@ -13,14 +13,15 @@
 	if (CONFIG_GET(flag/disable_erp_preferences))
 		return
 
-	var/nonhuman_bypass = !ishuman(src) && !src.client && !SSinteractions.is_blacklisted(src) // SPLURT EDIT - INTERACTIONS - All mobs should be interactable
+	var/nonhuman_bypass_self = !ishuman(src) && !src.client && !SSinteractions.is_blacklisted(src) // SPLURT EDIT - INTERACTIONS - All mobs should be interactable
+	var/nonhuman_bypass_partner = !ishuman(partner) && !partner?.client && !SSinteractions.is_blacklisted(partner) // SPLURT EDIT - INTERACTIONS - All mobs should be interactable
 
-	if(!client?.prefs?.read_preference(/datum/preference/toggle/erp/autocum) && !manual && !nonhuman_bypass)
+	if(!(client?.prefs?.read_preference(/datum/preference/toggle/erp/autocum) || nonhuman_bypass_self) && !manual)
 		return
 	if(refractory_period > REALTIMEOFDAY)
 		return
 	refractory_period = REALTIMEOFDAY + 30 SECONDS
-	if(has_status_effect(/datum/status_effect/climax_cooldown) || !(client?.prefs?.read_preference(/datum/preference/toggle/erp) || nonhuman_bypass))
+	if(has_status_effect(/datum/status_effect/climax_cooldown) || !(client?.prefs?.read_preference(/datum/preference/toggle/erp) || nonhuman_bypass_self))
 		return
 
 	if(HAS_TRAIT(src, TRAIT_NEVERBONER) || has_status_effect(/datum/status_effect/climax_cooldown) || (!has_vagina() && !has_penis()))
@@ -154,6 +155,11 @@
 							span_userlove("You hilt your cock into [target_mob]'s [climax_into_choice], shooting cum into [target_mob_them]!"))
 						to_chat(target_mob, span_userlove("Your [climax_into_choice] fills with warm cum as [src] shoots [self_their] load into it."))
 						conditional_pref_sound(get_turf(target_mob), climax_into_choice == "mouth" ? pick('modular_zzplurt/sound/interactions/mouthend (1).ogg', 'modular_zzplurt/sound/interactions/mouthend (2).ogg') : 'modular_zzplurt/sound/interactions/endout.ogg', 50, TRUE, pref_to_check = /datum/preference/toggle/erp/sounds) //SPLURT EDIT CHANGE - Interactions
+						//SPLURT EDIT ADDITION BEGIN - Genital Inflation
+						var/datum/component/interactable/interactable = target_mob.GetComponent(/datum/component/interactable)
+						if(interactable)
+							interactable.climax_inflate_genital(src, "testicles", climax_into_choice)
+						//SPLURT EDIT ADDITION END
 
 			var/obj/item/organ/external/genital/testicles/testicles = get_organ_slot(ORGAN_SLOT_TESTICLES)
 			//SPLURT EDIT CHANGE BEGIN - Interactions
@@ -180,7 +186,7 @@
 
 					//Check if the target has custom genital fluids enabled
 					var/datum/reagent/original_fluid_datum = testicles.internal_fluid_datum
-					if(!target_mob.client?.prefs?.read_preference(/datum/preference/toggle/erp/custom_genital_fluids))
+					if(!(target_mob.client?.prefs?.read_preference(/datum/preference/toggle/erp/custom_genital_fluids) || nonhuman_bypass_partner))
 						testicles.internal_fluid_datum = initial(testicles.internal_fluid_datum)
 
 					var/datum/reagents/R = new(testicles.internal_fluid_maximum)
@@ -284,6 +290,11 @@
 							span_userlove("You squirt into [target_mob]'s [climax_into_choice]!"))
 						to_chat(target_mob, span_userlove("Your [climax_into_choice] fills with [src]'s fluids."))
 						conditional_pref_sound(get_turf(target_mob), climax_into_choice == "mouth" ? pick('modular_zzplurt/sound/interactions/mouthend (1).ogg', 'modular_zzplurt/sound/interactions/mouthend (2).ogg') : 'modular_zzplurt/sound/interactions/endout.ogg', 50, TRUE, pref_to_check = /datum/preference/toggle/erp/sounds) //SPLURT EDIT CHANGE - Interactions
+						//SPLURT EDIT ADDITION BEGIN - Genital Inflation
+						var/datum/component/interactable/interactable = target_mob.GetComponent(/datum/component/interactable)
+						if(interactable)
+							interactable.climax_inflate_genital(src, "vagina", climax_into_choice)
+						//SPLURT EDIT ADDITION END
 			if(!(climax_interaction?.interaction_modifier_flags & INTERACTION_OVERRIDE_FLUID_TRANSFER))
 				if(create_cum_decal)
 					if(HAS_TRAIT(src, TRAIT_MESSY))
@@ -304,7 +315,7 @@
 
 					//Check if the target has custom genital fluids enabled
 					var/datum/reagent/original_fluid_datum = vagina.internal_fluid_datum
-					if(!target_mob.client?.prefs?.read_preference(/datum/preference/toggle/erp/custom_genital_fluids))
+					if(!(target_mob.client?.prefs?.read_preference(/datum/preference/toggle/erp/custom_genital_fluids) || nonhuman_bypass_partner))
 						vagina.internal_fluid_datum = initial(vagina.internal_fluid_datum)
 
 					var/datum/reagents/R = new(vagina.internal_fluid_maximum)

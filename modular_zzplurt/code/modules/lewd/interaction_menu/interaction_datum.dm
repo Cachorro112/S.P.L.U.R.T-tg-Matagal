@@ -163,10 +163,16 @@
 				if(!target.get_active_hand())
 					return FALSE
 			if(INTERACTION_REQUIRE_SELF_MOUTH)
-				if(!user.get_bodypart(BODY_ZONE_HEAD) || user.is_mouth_covered())
+				if(iscarbon(user))
+					if(!user.get_bodypart(BODY_ZONE_HEAD) || user.is_mouth_covered())
+						return FALSE
+				else if(!user.simulated_interaction_requirements[INTERACTION_REQUIRE_SELF_MOUTH])
 					return FALSE
 			if(INTERACTION_REQUIRE_TARGET_MOUTH)
-				if(!target.get_bodypart(BODY_ZONE_HEAD) || target.is_mouth_covered())
+				if(iscarbon(target))
+					if(!target.get_bodypart(BODY_ZONE_HEAD) || target.is_mouth_covered())
+						return FALSE
+				else if(!target.simulated_interaction_requirements[INTERACTION_REQUIRE_SELF_MOUTH])
 					return FALSE
 			if(INTERACTION_REQUIRE_SELF_TOPLESS)
 				if(!user.is_topless())

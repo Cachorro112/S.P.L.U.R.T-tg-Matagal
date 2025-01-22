@@ -38,7 +38,7 @@
 
 /datum/interaction/lewd/extreme/earfuck/post_interaction(mob/living/user, mob/living/target)
 	. = ..()
-	if(target.client?.prefs?.read_preference(/datum/preference/choiced/erp_status_extmharm) == "No" || !(!ishuman(target) && !target.client && !SSinteractions.is_blacklisted(target)))
+	if(target.client?.prefs?.read_preference(/datum/preference/choiced/erp_status_extmharm) == "No" && !(!ishuman(target) && !target.client && !SSinteractions.is_blacklisted(target)))
 		return
 	if(prob(15) && iscarbon(target))
 		target:bleed(2)

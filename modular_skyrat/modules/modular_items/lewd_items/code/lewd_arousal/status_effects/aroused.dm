@@ -17,7 +17,7 @@
 	alert_type = null
 
 /datum/status_effect/aroused/tick(seconds_between_ticks)
-	if((owner.stat >= DEAD || !owner.client?.prefs?.read_preference(/datum/preference/toggle/erp)) && !(!ishuman(owner) && !owner.client && !SSinteractions.is_blacklisted(owner)))
+	if(owner.stat >= DEAD || !(owner.client?.prefs?.read_preference(/datum/preference/toggle/erp) || (!ishuman(owner) && !owner.client && !SSinteractions.is_blacklisted(owner)))) // SPLURT EDIT - INTERACTIONS - All mobs should be interactable
 		return
 
 	var/mob/living/carbon/human/affected_mob = owner

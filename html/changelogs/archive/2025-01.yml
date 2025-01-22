@@ -259,11 +259,6 @@
   prototypemeat:
   - bugfix: Fixed Razorclaws.
 2025-01-20:
-  SmArtKar:
-  - bugfix: Characters should not reset randomly anymore, plus character prefs menu
-      should no longer runtime and potentially not save itself.
-  nikothedude:
-  - bugfix: Death degradation now has info for health analyzers
   KazooBard:
   - qol: All Mansus Worshippers can use the Relentless Heartbeat (Reroll targets)
       ritual earlier by two steps, so that they gain access alongside the ritual of
@@ -277,3 +272,42 @@
   SingingSpock:
   - bugfix: The ticking of clocks can no longer be heard through walls, filling the
       bridge with an incessant ticking noise like the Telltale heart's thumping.
+  SmArtKar:
+  - bugfix: Characters should not reset randomly anymore, plus character prefs menu
+      should no longer runtime and potentially not save itself.
+  nikothedude:
+  - bugfix: Death degradation now has info for health analyzers
+2025-01-21:
+  00-Steven:
+  - bugfix: Fixed cat ears not layering properly.
+  - bugfix: Husked bodies show their blood with the right colours in photographs.
+  Arturlang:
+  - balance: Flesh ghouls now have 100 HP, while heretic mute ghouls have normal human
+      HP, ie, 135, from 25 and 50
+  BurgerBB:
+  - rscdel: Updates Dracula Flow Brain Damage to be less weird.
+  IgiariValkyr:
+  - qol: Persistence is now in a persistent location on Lavaland, Moon, and Icebox.
+  LT3:
+  - map: Kilostation abandoned warehouse now starts unpowered
+  Odairu:
+  - bugfix: pirates spawn again
+  - bugfix: lone infil adds the chosen player to the spawned_mobs list
+  - bugfix: company import bars were invisible in stacks
+  Rathen Ivanov:
+  - rscadd: You can now purchase your very own CE Screws Plushie from the LustWish
+      Vendor.
+  ReturnToZender:
+  - balance: Reduces the weight of Bloodsuckers by 3, to make it notably different
+      from traitors
+  - balance: Raised the minimum number of players for a heretic to spawn.
+  mcbalaam:
+  - rscadd: Any mob can now interact - yuppie!
+  - refactor: Arousal/pleasure code refactoring
+  - bugfix: Mobs statuses in the UI are now properly spaced
+  - bugfix: Death degradation no longer instantly downs you
+2025-01-22:
+  Krashly:
+  - rscadd: Added more character customisation things
+  MosleyTheMalO:
+  - rscadd: added cumflation mechanics to the game
